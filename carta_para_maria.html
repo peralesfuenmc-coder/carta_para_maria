@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para María</title>
+    <style>
+        @page { size: A4; margin: 0; background-color: #fdfbf7; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fdfbf7;
+            overflow: hidden;
+        }
+        #envelope-container {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        #envelope-container:hover { transform: scale(1.05); }
+        #letter {
+            display: none;
+            width: 80%;
+            max-width: 600px;
+            padding: 40px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            line-height: 1.6;
+            color: #333;
+        }
+        .butterfly-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+        .butterfly {
+            position: absolute;
+            font-size: 24px;
+            animation: fly 4s ease-in-out infinite;
+        }
+        @keyframes fly {
+            0% { transform: translate(0, 0); opacity: 0; }
+            50% { transform: translate(50px, -50px); opacity: 1; }
+            100% { transform: translate(100px, 0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="envelope-container" onclick="openLetter()">
+    <div style="font-size: 100px;">✉️</div>
+    <p style="font-family: sans-serif; color: #555;">Presiona para abrir</p>
+</div>
+
+<div id="letter">
+    <div class="butterfly-container" id="butterflies">
+        <div class="butterfly" style="top: 10%; left: 10%;">🦋</div>
+        <div class="butterfly" style="top: 20%; left: 80%; animation-delay: 1s;">🦋</div>
+        <div class="butterfly" style="top: 70%; left: 20%; animation-delay: 2s;">🦋</div>
+    </div>
+    
+    <p>Tengo varios recuerdos y aunque entre ellos existen brechas, los únicos en los que verdaderamente anhelo volver a estar de pie son aquellos que me recuerdan a ti. Es como observar las llamas de un gran árbol ardiendo, porque mientras las acariciaba sentí la protección de sus hojas cuidándome en medio de mi pena. Pero también sé que el fuego quema y que la realidad de los días puede llegar a ser agobiante. Así exactamente es como me siento cuando estoy en tus brazos, porque son mi refugio real en medio de la rutina y el estrés del mundo.</p>
+    
+    <p>Y aunque a veces sienta que no tengo voz o me cueste expresarlo, tus bellas manos son las que me hacen sentir feliz. No porque sean perfectas o delicadas como en los cuentos, sino porque llevan la textura del esfuerzo, el cansancio de los días difíciles y la historia real de todo lo que tuviste que pasar. Por eso mismo son las manos que besaría sin miedo y sin temor a nada.</p>
+    
+    <p>A veces me siento como cuando las olas me arrastraron hacia la profundidad y no te niego que tengo un miedo muy humano y real de las cosas que puedan llegar a pasar mañana, de las dificultades que de verdad trae la vida. Sin embargo, encontrar esa tranquilidad y el simple hecho de sentir tu respiración a mi lado en un día cualquiera resulta sorprendente y es mucho más fuerte que cualquier fantasía. Te veo de la misma forma que cuando estaba hundiéndome tan al fondo que pude ver el sol brillar a través de mis pupilas manchadas por la sal. En ese instante las olas se movían por encima, chocando de una forma indescriptiblemente deslumbrante hasta encontrarse con la arena. No te prometo una historia de película donde todo es perfecto y no hay problemas, pero en medio de la cruda realidad y de cualquier tormenta, mi alma te pertenece.</p>
+</div>
+
+<script>
+    function openLetter() {
+        document.getElementById('envelope-container').style.display = 'none';
+        document.getElementById('letter').style.display = 'block';
+        document.getElementById('butterflies').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
