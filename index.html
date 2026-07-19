@@ -5,67 +5,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para María</title>
+    <!-- Cargamos una fuente de texto elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        @page { size: A4; margin: 0; background-color: #fdfbf7; }
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Georgia', serif;
+            font-family: 'Cormorant Garamond', serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #fdfbf7;
+            min-height: 100vh;
+            /* Fondo elegante con un ligero degradado cálido */
+            background: linear-gradient(135deg, #fdfbf7 0%, #eaddcf 100%);
             overflow: hidden;
         }
+        
+        /* Diseño del Sobre antes de abrir */
         #envelope-container {
             text-align: center;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            padding: 50px 70px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid #f2e3d5;
         }
-        #envelope-container:hover { transform: scale(1.05); }
+        #envelope-container:hover { 
+            transform: scale(1.05) translateY(-10px); 
+            box-shadow: 0 25px 45px rgba(0,0,0,0.15); 
+        }
+        .envelope-icon { font-size: 90px; margin-bottom: 10px; color: #d4a373; line-height: 1; }
+        .envelope-text { font-family: sans-serif; color: #888; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+        
+        /* Diseño de la Carta abierta */
         #letter {
             display: none;
-            width: 80%;
-            max-width: 600px;
-            padding: 40px;
-            background: white;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 650px;
+            padding: 50px 60px;
+            background: #fffefb;
+            /* Efecto de borde doble elegante */
+            box-shadow: 0 0 0 8px #fff, 0 0 0 10px #d4a373, 0 25px 50px rgba(0,0,0,0.15);
             position: relative;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #333;
+            font-size: 1.2rem;
+            text-align: justify;
+            border-radius: 2px;
         }
+        #letter p { margin-bottom: 25px; }
+        #letter p:last-child { margin-bottom: 0; }
+        
+        /* Contenedor de las mariposas */
         .butterfly-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             display: none;
+            z-index: 10;
         }
         .butterfly {
             position: absolute;
-            font-size: 24px;
-            animation: fly 4s ease-in-out infinite;
+            font-size: 35px;
+            /* Truco para volver el emoji completamente blanco con una pequeña sombra */
+            filter: brightness(0) invert(1) drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+            opacity: 0;
         }
-        @keyframes fly {
-            0% { transform: translate(0, 0); opacity: 0; }
-            50% { transform: translate(50px, -50px); opacity: 1; }
-            100% { transform: translate(100px, 0); opacity: 0; }
+        
+        /* Animaciones para que salgan volando y desaparezcan (forwards) */
+        .fly-1 { animation: flyOne 4s ease-out forwards; top: 80%; left: 10%; }
+        .fly-2 { animation: flyTwo 4.5s ease-out forwards; top: 70%; left: 80%; animation-delay: 0.3s; }
+        .fly-3 { animation: flyThree 3.5s ease-out forwards; top: 90%; left: 40%; animation-delay: 0.6s; }
+
+        @keyframes flyOne {
+            0% { transform: translate(0, 0) scale(0.8) rotate(-15deg); opacity: 0; }
+            20% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translate(150px, -400px) scale(1.2) rotate(15deg); opacity: 0; display: none; }
+        }
+        @keyframes flyTwo {
+            0% { transform: translate(0, 0) scale(0.8) rotate(15deg); opacity: 0; }
+            20% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translate(-150px, -350px) scale(1.5) rotate(-25deg); opacity: 0; display: none; }
+        }
+        @keyframes flyThree {
+            0% { transform: translate(0, 0) scale(0.8) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translate(50px, -450px) scale(1.1) rotate(35deg); opacity: 0; display: none; }
         }
     </style>
 </head>
 <body>
 
 <div id="envelope-container" onclick="openLetter()">
-    <div style="font-size: 100px;">✉️</div>
-    <p style="font-family: sans-serif; color: #555;">Presiona para abrir</p>
+    <div class="envelope-icon">✉️</div>
+    <p class="envelope-text">Presiona para abrir</p>
 </div>
 
 <div id="letter">
     <div class="butterfly-container" id="butterflies">
-        <div class="butterfly" style="top: 10%; left: 10%;">🦋</div>
-        <div class="butterfly" style="top: 20%; left: 80%; animation-delay: 1s;">🦋</div>
-        <div class="butterfly" style="top: 70%; left: 20%; animation-delay: 2s;">🦋</div>
+        <div class="butterfly fly-1">🦋</div>
+        <div class="butterfly fly-2">🦋</div>
+        <div class="butterfly fly-3">🦋</div>
     </div>
     
     <p>Tengo varios recuerdos y aunque entre ellos existen brechas, los únicos en los que verdaderamente anhelo volver a estar de pie son aquellos que me recuerdan a ti. Es como observar las llamas de un gran árbol ardiendo, porque mientras las acariciaba sentí la protección de sus hojas cuidándome en medio de mi pena. Pero también sé que el fuego quema y que la realidad de los días puede llegar a ser agobiante. Así exactamente es como me siento cuando estoy en tus brazos, porque son mi refugio real en medio de la rutina y el estrés del mundo.</p>
